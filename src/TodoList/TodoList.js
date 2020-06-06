@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import TodoItem from "./TodoItem";
 
 const TodoList = ({ todoList, setTodoList }) => {
-  const updateTodoList = (id, content, checked) => {
+  const updateTodoList = (id, content, executed) => {
     const index = todoList.findIndex((obj) => obj.id === id);
-    todoList[index].executed = checked;
+    todoList[index].executed = executed;
     console.log("todo", todoList);
     setTodoList([...todoList]);
   };
@@ -15,7 +15,7 @@ const TodoList = ({ todoList, setTodoList }) => {
         <TodoItem
           key={todo.id}
           id={todo.id}
-          checked={todo.executed}
+          executed={todo.executed}
           content={todo.content !== null ? todo.content : ""}
           updateTodoList={updateTodoList}
         />

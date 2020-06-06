@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { onChangeCheck } from "../service/services";
 
-const TodoItem = ({ id, content, checked, updateTodoList }) => {
+const TodoItem = ({ id, content, executed, updateTodoList }) => {
   return (
     <div>
       <form>
         {id}
         <input
           type="checkbox"
-          checked={checked}
+          executed={executed}
           onChange={() => {
-            onChangeCheck(id, content, checked);
-            updateTodoList(id, content, checked === 1 ? 0 : 1);
+            onChangeCheck(id, content, executed);
+            updateTodoList(id, content, executed === 1 ? 0 : 1);
           }}
         />
         <input

@@ -12,25 +12,25 @@ export const fetchAllTodo = async () => {
   return json;
 };
 
-export const onChangeCheck = (id, content, checked) => {
-  changeTodo(id, content, checked === 1 ? 0 : 1);
+export const onChangeCheck = (id, content, executed) => {
+  changeTodo(id, content, executed === 1 ? 0 : 1);
 };
 /**
  * TODOリストの更新要求を送信する。
  *
  * @param {id} id
  * @param {コンテンツ} content
- * @param {チェックフラグ} checked
+ * @param {チェックフラグ} executed
  */
-export const changeTodo = async (id, content, checked) => {
-  // if (!this.isValid(id, checked)) {
+export const changeTodo = async (id, content, executed) => {
+  // if (!this.isValid(id, executed)) {
   //   return;
   // }
 
   const formData = new FormData();
   formData.append("id", id);
   formData.append("content", content);
-  formData.append("executed", checked);
+  formData.append("executed", executed);
   const formDataEncoded = new URLSearchParams(formData);
 
   const url = "http://localhost:8888/todo";
