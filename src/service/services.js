@@ -13,28 +13,12 @@ export const fetchAllTodo = async () => {
   return json;
 };
 
-export const onChangeCheck = (id, content, executed) => {
-  changeTodo(id, content, executed === 1 ? 0 : 1);
-};
-
-/**
- * フォームから変更を受け取り、
- * TODOリストを変更するリクエストをサーバに送って画面を更新する。
- *
- * @param {id} id
- * @param {コンテンツ} content
- * @param {チェックフラグ} checked
- */
-export const onChangeContent = (id, content, checked) => {
-  changeTodo(id, content, checked);
-};
-
 /**
  * 引数から受け取ったIDのTODOを削除する。
  *
  * @param {id} id
  */
-export const onDeleteContent = (id) => {
+export const onDeleteTodo = (id) => {
   deleteTodo(id);
 };
 
@@ -45,7 +29,7 @@ export const onDeleteContent = (id) => {
  * @param {コンテンツ} content
  * @param {チェックフラグ} executed
  */
-const changeTodo = async (id, content, executed) => {
+export const onUpdateTodo = async (id, content, executed) => {
   if (!isValid(id, executed)) {
     return;
   }
