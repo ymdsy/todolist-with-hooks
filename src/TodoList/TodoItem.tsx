@@ -1,6 +1,20 @@
 import React from "react";
 
-const TodoItem = ({ id, content, executed, updateTodo, deleteTodo }) => {
+interface TodoItemProps {
+  id: number;
+  content: string;
+  executed: boolean;
+  updateTodo: (id: number, content: string, executed: boolean) => void;
+  deleteTodo: (id: number) => void;
+}
+
+const TodoItem: React.SFC<TodoItemProps> = ({
+  id,
+  content,
+  executed,
+  updateTodo,
+  deleteTodo,
+}) => {
   return (
     <div>
       <form>
@@ -9,7 +23,7 @@ const TodoItem = ({ id, content, executed, updateTodo, deleteTodo }) => {
           type="checkbox"
           checked={executed}
           onChange={() => {
-            updateTodo(id, content, executed === 1 ? 0 : 1);
+            updateTodo(id, content, !executed);
           }}
         />
         <input

@@ -1,5 +1,5 @@
 import React from "react";
-import TodoItem from "./TodoItem";
+import TodoItem from "./TodoItem.tsx";
 import { onUpdateTodo, onDeleteTodo } from "../service/services";
 
 const TodoList = ({ todoList, setTodoList }) => {

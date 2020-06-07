@@ -1,3 +1,5 @@
+import { isBoolean } from "util";
+
 const url = "http://localhost:8888/todo";
 
 /**
@@ -106,16 +108,16 @@ const deleteTodo = async (id) => {
 /**
  * 正しい値であることを確認する。
  * @param {id} id
- * @param {チェックフラグ} checked
+ * @param {チェックフラグ} executed
  */
-const isValid = (id, checked) => {
+const isValid = (id, executed) => {
   if (!Number.isInteger(id)) {
     console.log("Illeagal id was expected.");
     return false;
   }
 
-  if (checked !== 0 && checked !== 1) {
-    console.log("Illeagal checked was expected. checked=[" + checked + "]");
+  if (!isBoolean(executed)) {
+    console.log("Illeagal executed was expected. executed=[" + executed + "]");
     return false;
   }
 
