@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TodoList from "./TodoList/TodoList";
+import TodoList from "./TodoList/TodoList.tsx";
 import TodoCreator from "./TodoCreator/TodoCreator";
 import { fetchAllTodo } from "./service/services";
 

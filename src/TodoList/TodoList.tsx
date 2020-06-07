@@ -1,13 +1,19 @@
 import React from "react";
-import TodoItem from "./TodoItem.tsx";
+import TodoItem from "./TodoItem";
 import { onUpdateTodo, onDeleteTodo } from "../service/services";
+import { TodoElement, TodoElements } from "../domain/entity";
 
-const TodoList = ({ todoList, setTodoList }) => {
-  const deleteTodo = (id) => {
+interface TodoListProps {
+  todoList: TodoElements;
+  setTodoList: (todoList: TodoElements) => void;
+}
+
+const TodoList: React.SFC<TodoListProps> = ({ todoList, setTodoList }) => {
+  const deleteTodo = (id: number) => {
     onDeleteTodo(id);
   };
 
-  const updateTodo = (id, content, executed) => {
+  const updateTodo = (id: number, content: string, executed: boolean) => {
     onUpdateTodo(id, content, executed);
     todoList[findIndex(id)] = {
       id: id,
@@ -17,13 +23,13 @@ const TodoList = ({ todoList, setTodoList }) => {
     setTodoList([...todoList]);
   };
 
-  const findIndex = (id) => {
-    return todoList.findIndex((obj) => obj.id === id);
+  const findIndex = (id: number) => {
+    return todoList.findIndex((obj: TodoElement) => obj.id === id);
   };
 
   return (
     <>
-      {todoList.map((todo) => (
+      {todoList.map((todo: TodoElement) => (
         <TodoItem
           key={todo.id}
           id={todo.id}
