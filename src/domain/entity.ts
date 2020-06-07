@@ -4,4 +4,3 @@ export interface TodoElement {
   executed: boolean;
 }
 export type TodoElements = TodoElement[];
-// export type ISquare = "X" | "O" | null;

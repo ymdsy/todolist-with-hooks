@@ -1,15 +1,16 @@
 import { isBoolean } from "util";
+import { TodoElements } from "../domain/entity";
 
 const url = "http://localhost:8888/todo";
 
 /**
  * TODOリストをサーバから取得する。
  */
-export const fetchAllTodo = async () => {
+export const fetchAllTodo = async (): Promise<TodoElements> => {
   const response = await fetch(url);
   if (!response.ok) {
     console.log("Fail to receive responce.");
-    return;
+    return [];
   }
   const json = await response.json();
   return json;
@@ -20,8 +21,8 @@ export const fetchAllTodo = async () => {
  *
  * @param {コンテンツ} content
  */
-export const onCreateTodo = async (content) => {
-  const formData = new FormData();
+export const onCreateTodo = async (content: string) => {
+  const formData = new URLSearchParams();
   formData.append("content", content);
   const formDataEncoded = new URLSearchParams(formData);
 
@@ -42,7 +43,7 @@ export const onCreateTodo = async (content) => {
  *
  * @param {id} id
  */
-export const onDeleteTodo = (id) => {
+export const onDeleteTodo = (id: number) => {
   deleteTodo(id);
 };
 
@@ -53,15 +54,19 @@ export const onDeleteTodo = (id) => {
  * @param {コンテンツ} content
  * @param {チェックフラグ} executed
  */
-export const onUpdateTodo = async (id, content, executed) => {
+export const onUpdateTodo = async (
+  id: number,
+  content: string,
+  executed: boolean
+) => {
   if (!isValid(id, executed)) {
     return;
   }
 
-  const formData = new FormData();
-  formData.append("id", id);
+  const formData = new URLSearchParams();
+  formData.append("id", id.toString());
   formData.append("content", content);
-  formData.append("executed", executed);
+  formData.append("executed", executed ? "1" : "0");
   const formDataEncoded = new URLSearchParams(formData);
 
   const response = await fetch(url, {
@@ -81,15 +86,15 @@ export const onUpdateTodo = async (id, content, executed) => {
 /**
  * TODOリストの削除要求を送信する。
  *
- * @param {削除したいTODOのid}} id
+ * @param {削除したいTODOのid} id
  */
-const deleteTodo = async (id) => {
+const deleteTodo = async (id: number) => {
   if (!isValid(id, true)) {
     return;
   }
 
-  const formData = new FormData();
-  formData.append("id", id);
+  const formData = new URLSearchParams();
+  formData.append("id", id.toString());
   const formDataEncoded = new URLSearchParams(formData);
 
   const response = await fetch(url, {
@@ -110,7 +115,7 @@ const deleteTodo = async (id) => {
  * @param {id} id
  * @param {チェックフラグ} executed
  */
-const isValid = (id, executed) => {
+const isValid = (id: number, executed: boolean) => {
   if (!Number.isInteger(id)) {
     console.log("Illeagal id was expected.");
     return false;
