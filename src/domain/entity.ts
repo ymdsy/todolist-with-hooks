@@ -1,6 +1,6 @@
 export interface TodoElement {
   id: number;
   content: string;
-  executed: boolean;
+  executed: number;
 }
 export type TodoElements = TodoElement[];

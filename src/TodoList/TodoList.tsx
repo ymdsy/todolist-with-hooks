@@ -13,7 +13,7 @@ const TodoList: React.SFC<TodoListProps> = ({ todoList, setTodoList }) => {
     onDeleteTodo(id);
   };
 
-  const updateTodo = (id: number, content: string, executed: boolean) => {
+  const updateTodo = (id: number, content: string, executed: number) => {
     onUpdateTodo(id, content, executed);
     todoList[findIndex(id)] = {
       id: id,

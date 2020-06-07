@@ -57,7 +57,7 @@ export const onDeleteTodo = (id: number) => {
 export const onUpdateTodo = async (
   id: number,
   content: string,
-  executed: boolean
+  executed: number
 ) => {
   if (!isValid(id, executed)) {
     return;
@@ -89,7 +89,7 @@ export const onUpdateTodo = async (
  * @param {削除したいTODOのid} id
  */
 const deleteTodo = async (id: number) => {
-  if (!isValid(id, true)) {
+  if (!isValid(id, 0)) {
     return;
   }
 
@@ -115,13 +115,13 @@ const deleteTodo = async (id: number) => {
  * @param {id} id
  * @param {チェックフラグ} executed
  */
-const isValid = (id: number, executed: boolean) => {
+const isValid = (id: number, executed: number) => {
   if (!Number.isInteger(id)) {
     console.log("Illeagal id was expected.");
     return false;
   }
 
-  if (!isBoolean(executed)) {
+  if (!Number.isInteger(executed)) {
     console.log("Illeagal executed was expected. executed=[" + executed + "]");
     return false;
   }
