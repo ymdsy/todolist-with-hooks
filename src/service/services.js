@@ -14,6 +14,28 @@ export const fetchAllTodo = async () => {
 };
 
 /**
+ * TODOリストの登録要求を送信する。
+ *
+ * @param {コンテンツ} content
+ */
+export const onCreateTodo = async (content) => {
+  const formData = new FormData();
+  formData.append("content", content);
+  const formDataEncoded = new URLSearchParams(formData);
+
+  const response = await fetch(url, {
+    method: "POST",
+    body: formDataEncoded,
+  });
+  if (!response.ok) {
+    console.log("Fail to receive responce.", response);
+    return {};
+  }
+  const json = await response.json();
+  return json;
+};
+
+/**
  * 引数から受け取ったIDのTODOを削除する。
  *
  * @param {id} id
