@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import { onChangeCheck } from "../service/services";
+import React from "react";
+import {
+  onChangeCheck,
+  onChangeContent,
+  onDeleteContent,
+} from "../service/services";
 
 const TodoItem = ({ id, content, executed, updateTodoList }) => {
   return (
@@ -8,7 +12,7 @@ const TodoItem = ({ id, content, executed, updateTodoList }) => {
         {id}
         <input
           type="checkbox"
-          executed={executed}
+          checked={executed}
           onChange={() => {
             onChangeCheck(id, content, executed);
             updateTodoList(id, content, executed === 1 ? 0 : 1);
@@ -18,12 +22,13 @@ const TodoItem = ({ id, content, executed, updateTodoList }) => {
           type="text"
           value={content}
           onChange={(e) => {
-            /* props.onChangeContent(props.id, e.target.value, props.checked) */
+            onChangeContent(id, e.target.value, executed);
+            updateTodoList(id, e.target.value, executed);
           }}
         />
         <button
           onClick={() => {
-            /* props.onDeleteContent(props.id) */
+            onDeleteContent(id);
           }}
         >
           削除する
