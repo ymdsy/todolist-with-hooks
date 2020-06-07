@@ -4,7 +4,12 @@ import { onCreateTodo } from "../service/services";
 const TodoCreator = () => {
   const [content, setContent] = useState("");
 
-  const onChangeContent = (newContent) => {
+  /**
+   * 引数のnewContentをstateに反映する。
+   *
+   * @param newContent 新規TODOの内容。
+   */
+  const onChangeContent = (newContent: string) => {
     setContent(newContent);
   };
 

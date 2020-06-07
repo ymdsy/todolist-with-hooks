@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList/TodoList.tsx";
-import TodoCreator from "./TodoCreator/TodoCreator";
+import TodoCreator from "./TodoCreator/TodoCreator.tsx";
 import { fetchAllTodo } from "./service/services";
 
 const App = () => {

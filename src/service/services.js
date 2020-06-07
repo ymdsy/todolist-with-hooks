@@ -84,7 +84,7 @@ export const onUpdateTodo = async (id, content, executed) => {
  * @param {削除したいTODOのid}} id
  */
 const deleteTodo = async (id) => {
-  if (!isValid(id, 0)) {
+  if (!isValid(id, true)) {
     return;
   }
 
