@@ -6,6 +6,8 @@ import { TodoElements } from "./domain/entity";
 
 const App = () => {
   const [todoList, setTodoList] = useState<TodoElements>([]);
+  const [todoNum, setTodoNum] = useState(0);
+  const [executedTodoNum, setExecutedTodoNum] = useState(0);
 
   const setFunc = (todoList: TodoElements) => {
     setTodoList(todoList);
@@ -15,6 +17,15 @@ const App = () => {
     fetchAllTodo().then(setFunc);
   }, []);
 
+  useEffect(() => {
+    setTodoNum(todoList.length);
+    setExecutedTodoNum(
+      todoList.filter((todo) => {
+        return todo.executed === 1;
+      }).length
+    );
+  }, [todoList]);
+
   return (
     <>
       {todoList.length > 0 ? (
@@ -23,6 +34,8 @@ const App = () => {
         <>Loding List...</>
       )}
       <TodoCreator />
+      <div>todoの数：{todoNum}</div>
+      <div>実行済みのtodoの数：{executedTodoNum}</div>
     </>
   );
 };
