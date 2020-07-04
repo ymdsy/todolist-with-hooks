@@ -128,3 +128,13 @@ const isValid = (id: number, executed: number) => {
 
   return true;
 };
+
+/**
+ * ipアドレス取得する。
+ */
+export const fetchIp = async (): Promise<string> => {
+  const response = await fetch("https://ifconfig.me/ip");
+  const text = await response.text();
+  console.log("fetch ip address", text);
+  return text;
+};
