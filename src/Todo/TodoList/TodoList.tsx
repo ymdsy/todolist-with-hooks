@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
-import { onUpdateTodo, onDeleteTodo } from "../service/services";
-import { TodoElement, TodoElements } from "../domain/entity";
+import { onUpdateTodo, onDeleteTodo } from "../../service/services";
+import { TodoElement, TodoElements } from "../../domain/entity";
 
 interface TodoListProps {
   todoList: TodoElements;
