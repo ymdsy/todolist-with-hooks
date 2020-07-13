@@ -7,7 +7,7 @@ const IpAddress = () => {
 
   const handleClick = () => {
     setIsOpenAddress(true);
-    if (ipAddress !== "") {
+    if (ipAddress.length !== 0) {
       return;
     }
     fetchIp().then((ipAddress) => {
